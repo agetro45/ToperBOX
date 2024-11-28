@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos Vistos Recientemente</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #69e7c7;
+            margin: 0;
+            padding: 0;
+        }
+        /* Contenedor principal */
+        
+        .productos-vistos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            padding: 30px;
+            margin-top: 20px;
+        }
+        /* Estilo de cada producto */
+        
+        .producto {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .producto:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .producto img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .producto:hover img {
+            transform: scale(1.1);
+        }
+        
+        .producto-info {
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .producto-info h3 {
+            font-size: 18px;
+            color: #333;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        
+        .producto-info p {
+            font-size: 16px;
+            color: #666;
+            margin: 5px 0;
+        }
+        
+        .producto-info .precio {
+            font-size: 18px;
+            color: #007bff;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        /* Estilos de título principal */
+        
+        h2 {
+            text-align: center;
+            font-size: 32px;
+            color: #333;
+            margin-top: 50px;
+            font-weight: bold;
+        }
+        /* Animación de carga */
+        
+        .loading {
+            text-align: center;
+            font-size: 24px;
+            color: #007bff;
+            font-weight: bold;
+            margin-top: 50px;
+            animation: bounce 1.5s infinite;
+        }
+        
+        @keyframes bounce {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Productos Vistos Recientemente</h2>
+
+    <div id="loading" class="loading">
+        Cargando productos...
+    </div>
+
+    <div class="productos-vistos" id="productosVistos">
+        <!-- Los productos se cargarán aquí dinámicamente -->
+    </div>
+
+    <script>
+        // Función para cargar los productos desde localStorage (o simulación de carrito)
+        function cargarProductosVistos() {
+            const contenedor = document.getElementById('productosVistos');
+            const loading = document.getElementById('loading');
+
+            // Recuperar los productos del carrito almacenados en localStorage
+            const productosEnCarrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+            // Limpiar el contenedor antes de agregar nuevos productos
+            contenedor.innerHTML = '';
+
+            // Ocultar el mensaje de carga
+            loading.style.display = 'none';
+
+            // Verificar si hay productos en el carrito
+            if (productosEnCarrito.length === 0) {
+                contenedor.innerHTML = '<p style="text-align: center; color: #666;">No has agregado productos al carrito aún.</p>';
+                return;
+            }
+
+            // Recorrer los productos en el carrito y agregarlos al contenedor
+            productosEnCarrito.forEach(producto => {
+                const divProducto = document.createElement('div');
+                divProducto.classList.add('producto');
+
+                divProducto.innerHTML = `
+                    <img src="${producto.imagen}" alt="${producto.nombre}">
+                    <div class="producto-info">
+                        <h3>${producto.nombre}</h3>
+                        <p>En oferta</p>
+                        <p class="precio">$${producto.precio.toFixed(2)}</p>
+                    </div>
+                `;
+
+                contenedor.appendChild(divProducto);
+            });
+        }
+
+        // Llamar a la función para cargar los productos al cargar la página
+        window.onload = cargarProductosVistos;
+    </script>
+
+</body>
+
+</html>

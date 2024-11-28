@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selecciona un Cupón</title>
+    <style>
+        /* General page styling */
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #58c9c6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        /* Container for the select input */
+        
+        .cupon-container {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px 40px;
+            text-align: center;
+            width: 300px;
+        }
+        /* Title style */
+        
+        .cupon-container h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        /* Label styling */
+        
+        label {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 10px;
+            display: block;
+        }
+        /* Styling the select element */
+        
+        select {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 2px solid #ccc;
+            background-color: #fafafa;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        /* Adding hover and focus effects */
+        
+        select:hover {
+            border-color: #007BFF;
+        }
+        
+        select:focus {
+            outline: none;
+            border-color: #007BFF;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+        /* Styling for the dropdown options */
+        
+        option {
+            font-size: 16px;
+            padding: 10px;
+            background-color: #fff;
+            color: #333;
+        }
+        /* Adding a hover effect for the options */
+        
+        option:hover {
+            background-color: #f1f1f1;
+        }
+        /* Responsive design */
+        
+        @media (max-width: 480px) {
+            .cupon-container {
+                width: 80%;
+                padding: 20px;
+            }
+            .cupon-container h2 {
+                font-size: 20px;
+            }
+            select {
+                font-size: 14px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="cupon-container">
+        <h2>¡Selecciona tu cupón!</h2>
+        <label for="cupones">Escoge uno de nuestros cupones disponibles:</label>
+        <select id="cupones" name="cupones">
+            <option value="">Selecciona un cupón</option>
+            <option value="35-1">35% DE DTO. (Pedidos nuevos)</option>
+            <option value="20-2499">20% DE DTO. (Pedidos +MXN2,499)</option>
+            <option value="18-selected">18% DE DTO. (Productos seleccionados)</option>
+        </select>
+    </div>
+
+</body>
+
+</html>

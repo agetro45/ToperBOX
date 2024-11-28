@@ -1,0 +1,661 @@
+/* Estilos generales */
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+.navbar {
+    background-color: #161e25;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .navbar-brand {
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.navbar .nav-link {
+    color: rgb(184, 26, 26);
+    margin-right: 15px;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+    background-color: #004d40;
+    color: #ffeb3b;
+    border-radius: 5px;
+    padding: 8px 12px;
+}
+
+
+/* Sección de Reseñas */
+
+#reseñas-section {
+    background-color: #f9f9f9;
+    padding: 20px 20px;
+    margin-top: 40px;
+    border-radius: 8px;
+}
+
+#reseñas-section .text-center h2 {
+    font-size: 28px;
+    color: #00796b;
+    font-weight: bold;
+}
+
+#reseñas-section .text-center p {
+    font-size: 16px;
+    color: #555;
+}
+
+#reseñas-section .card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+#reseña-form .form-group {
+    margin-bottom: 20px;
+}
+
+#reseña-form label {
+    font-size: 16px;
+    color: #00796b;
+    font-weight: bold;
+}
+
+#reseña-form .form-control {
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    padding: 12px;
+    font-size: 14px;
+    color: #333;
+    transition: border 0.3s ease;
+}
+
+#reseña-form .form-control:focus {
+    border-color: #00796b;
+    box-shadow: 0 0 5px rgba(0, 123, 123, 0.3);
+}
+
+#reseña-form .d-flex i {
+    font-size: 20px;
+    color: #dcdcdc;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    margin: 0 5px;
+}
+
+#reseña-form .d-flex i:hover {
+    color: #ffeb3b;
+}
+
+#reseña-form .d-flex i.selected {
+    color: #ffeb3b;
+}
+
+#reseña-form .btn-primary {
+    background-color: #00796b;
+    border-color: #00796b;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#reseña-form .btn-primary:hover {
+    background-color: #004d40;
+    transform: scale(1.05);
+}
+
+#reseñas-section .list-group-item {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#reseñas-section .list-group-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+#reseñas-section .list-group-item h5 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #004d40;
+}
+
+#reseñas-section .list-group-item p {
+    font-size: 14px;
+    color: #555;
+}
+
+#reseñas-section .text-warning {
+    font-size: 18px;
+    color: #ffeb3b;
+}
+
+
+/* Hero Section */
+
+.hero-section {
+    background-color: #80cbc4;
+    padding: 50px 20px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.hero-section h1 {
+    color: #004d40;
+    margin-bottom: 15px;
+    font-size: 36px;
+    letter-spacing: 2px;
+}
+
+.hero-section img {
+    width: 70%;
+    max-width: 380px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.hero-section .btn {
+    background-color: #ff5722;
+    color: white;
+    font-weight: bold;
+    padding: 12px 25px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.hero-section .btn:hover {
+    background-color: #e64a19;
+    transform: scale(1.1);
+}
+
+
+/* seccion caracteristicas */
+
+.features-section {
+    background-color: #00796b;
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.features-section div {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.features-section div p {
+    margin: 0;
+    font-size: 14px;
+}
+
+
+/* tarjetas producto */
+
+.product-card {
+    border: 1px solid #ddd;
+    background-color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.product-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.product-card h5 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+
+/* detalles productos */
+
+.product-details-section {
+    padding: 60px 20px;
+    background-color: #f1f1f1;
+    border-radius: 8px;
+}
+
+.product-details-section h2 {
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: #004d40;
+}
+
+.product-details-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.product-details-section ul li {
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+
+/* pie de ágina */
+
+.footer {
+    background-color: #00796b;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+    border-top: 5px solid #004d40;
+}
+
+.footer .social-media a {
+    color: #fff;
+    margin: 0 12px;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.footer .social-media a:hover {
+    color: #ffeb3b;
+}
+
+
+/* botones de navegacion*/
+
+.navigation-buttons .btn-atras {
+    position: fixed;
+    left: 0;
+    top: 120px;
+    background-color: #0288d1;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.navigation-buttons .btn-atras:hover {
+    background-color: #0277bd;
+    transform: scale(1.1);
+}
+
+
+/* formilario busqueda*/
+
+form#search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+#search-form input[type="search"] {
+    width: 250px;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+#search-form input[type="search"]:focus {
+    border-color: #00796b;
+}
+
+#search-form button {
+    background-color: #0288d1;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#search-form button:hover {
+    background-color: #0277bd;
+}
+
+
+/* Carousel */
+
+.hero-section .carousel-item img {
+    width: 80%;
+    max-height: 300px;
+    object-fit: contain;
+    background-color: rgba(243, 236, 236, 0.655);
+    margin: 0 auto;
+    display: block;
+    border-radius: 8px;
+}
+
+.hero-section .carousel-control-prev-icon,
+.hero-section .carousel-control-next-icon {
+    filter: invert(1);
+}
+
+
+/* Estilo para la sección "Conócenos" */
+
+#conocenos {
+    background: linear-gradient(135deg, #95e4db, #4fc1e8);
+    padding: 40px 0;
+    color: #fff;
+    text-align: center;
+}
+
+#conocenos h2 {
+    font-size: 30px;
+    margin-bottom: 40px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #fff;
+}
+
+
+/* Contenedor de las tarjetas */
+
+.feature-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+}
+
+
+/* Diseño de las tarjetas */
+
+.feature {
+    background: #ffffff;
+    border-radius: 15px;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    width: 220px;
+    padding: 20px 10px;
+    position: relative;
+}
+
+.feature:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Animación decorativa al hacer hover */
+
+.feature::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #4fc1e8, #95e4db);
+    transition: width 0.4s ease;
+    z-index: 1;
+}
+
+.feature:hover::before {
+    width: 100%;
+}
+
+
+/* Estilo de las imágenes */
+
+.feature img {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 15px;
+    border-radius: 50%;
+    border: 4px solid #95e4db;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.feature:hover img {
+    transform: rotate(10deg) scale(1.1);
+}
+
+
+/* Títulos y descripción */
+
+.feature h4 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.feature p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}
+
+
+/* Diseño responsivo */
+
+@media (max-width: 768px) {
+    .feature-section {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .feature {
+        width: 90%;
+    }
+}
+
+
+/* Modal Styles */
+
+#registerModal .modal-dialog {
+    max-width: 600px;
+}
+
+#registerModal .modal-header {
+    background-color: #00796b;
+    color: white;
+}
+
+#registerModal .form-group label {
+    color: #333;
+}
+
+#registerModal .btn-primary {
+    background-color: #ff5722;
+    border-color: #ff5722;
+}
+
+#registerModal .btn-primary:hover {
+    background-color: #e64a19;
+}
+
+
+/* Register Button */
+
+.btn-register {
+    background-color: #00aaff;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-weight: bold;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-register:hover {
+    background-color: #0088cc;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Dropdown Submenu */
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -5px;
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+
+.navbar .nav-link.productos-link {
+    color: #fff;
+    /* Cambiar color a blanco */
+    font-weight: bold;
+    /* Opcional, para destacarlo */
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-link.productos-link:hover {
+    background-color: #004d40;
+    /* Mantener estilo de hover consistente */
+    color: #ffeb3b;
+    /* Color amarillo para hover */
+    border-radius: 5px;
+    padding: 8px 12px;
+}
+
+
+/* Navbar */
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+}
+
+
+/* Barra de búsqueda */
+
+form#search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0;
+}
+
+#search-form input[type="search"] {
+    width: 150px;
+    padding: 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+#search-form button {
+    background-color: #28a745;
+    color: white;
+    padding: 5px 2px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#search-form button:hover {
+    background-color: #218838;
+}
+
+
+/* Media Queries */
+
+@media (max-width: 576px) {
+    form#search-form {
+        width: 100%;
+        margin: 10px 0;
+    }
+    #search-input,
+    #search-form button {
+        width: 100%;
+        border-radius: 4px;
+        margin-bottom: 5px;
+    }
+    .navbar-nav {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+
+/* Estilo de hover en los botones */
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+
+/* Efecto de sombra en los campos de entrada */
+
+.form-control {
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+    border-color: #007bff;
+}
+
+
+/* Efecto de icono en los inputs */
+
+.input-group-text {
+    background-color: #f0f8ff;
+    border: 1px solid #007bff;
+}
+
+
+/* Animación de entrada del modal */
+
+.modal.fade .modal-dialog {
+    transform: translateY(-30px);
+    transition: transform 0.3s ease;
+}
+
+.modal.show .modal-dialog {
+    transform: translateY(0);
+}

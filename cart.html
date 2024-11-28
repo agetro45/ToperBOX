@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+        }
+        
+        .cart-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+        
+        .cart-summary {
+            width: 30%;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        .cart-summary h4 {
+            margin-bottom: 20px;
+        }
+        
+        .cart-summary .total {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        
+        .cart-summary .btn-pay {
+            background-color: #007bff;
+            color: white;
+            width: 100%;
+            padding: 15px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cart-summary .btn-pay:hover {
+            background-color: #0056b3;
+        }
+        
+        .cart-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+        
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        .cart-item-details {
+            flex: 1;
+        }
+        
+        .cart-item-actions button {
+            margin-left: 10px;
+        }
+        
+        .cart-count {
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 50%;
+            font-weight: bold;
+        }
+        /* Estilos para cupones y envío */
+        
+        .discount-section,
+        .shipping-section {
+            margin-top: 20px;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .btn-apply {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .btn-apply:hover {
+            background-color: #218838;
+        }
+        
+        .shipping-option {
+            margin-bottom: 10px;
+        }
+        /* Forma Modal*/
+        
+        .modal-content {
+            padding: 20px;
+        }
+        /*Métodos de Pago*/
+        
+        .payment-section {
+            background-color: #f8f9fa;
+            padding: 30px 0;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .payment-options {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .payment-option {
+            flex: 1 1 120px;
+            max-width: 120px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .payment-logo {
+            width: 100%;
+            max-width: 100px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .payment-option:hover .payment-logo {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .payment-options {
+                flex-direction: column;
+                align-items: center;
+            }
+            .payment-option {
+                margin-bottom: 20px;
+            }
+        }
+        /* Estilos para el modal de compra */
+        
+        .modal-content {
+            border-radius: 10px;
+            border: none;
+            background-color: #fff;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        .modal-header {
+            background-color: #007bff;
+            color: #fff;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            padding: 20px;
+        }
+        
+        .modal-body {
+            padding: 30px;
+        }
+        
+        .modal-footer {
+            background-color: #f9f9f9;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            padding: 15px;
+        }
+        
+        .modal-title {
+            font-size: 1.5em;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .btn-confirm,
+        .btn-close {
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .btn-confirm {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            margin-right: 10px;
+        }
+        
+        .btn-confirm:hover {
+            background-color: #218838;
+        }
+        
+        .btn-close {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+        }
+        
+        .btn-close:hover {
+            background-color: #c82333;
+        }
+        /* Animación de entrada */
+        
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Estilo para el resumen del pago */
+        
+        .payment-method-summary {
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .payment-method-summary strong {
+            font-size: 1.2em;
+        }
+        
+        .payment-method-summary p {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container my-5">
+        <h2 class="text-center mb-5">Carrito de Compras</h2>
+
+        <!-- Header de carrito -->
+        <div class="cart-header text-center mb-4">
+            <span>Productos en el carrito: </span><span id="cart-count" class="cart-count">0</span>
+        </div>
+
+        <!-- Contenedor del carrito y resumen de pedido -->
+        <div class="cart-container">
+            <div id="cart-items" class="col-md-7">
+                <!-- Los detalles del carrito se mostrarán aquí -->
+            </div>
+
+            <div class="cart-summary">
+                <h4>Resumen Del Pedido</h4>
+                <p>Precio aproximado:</p>
+                <div class="total">$<span id="cart-total">0.00</span></div>
+
+                <!-- Cupones -->
+                <div class="discount-section">
+                    <h5>Cupones Disponibles</h5>
+                    <select id="coupon-dropdown" class="form-control dropdown-coupons">
+                        <option value="">Selecciona un cupón</option>
+                        <option value="35-1">35% DE DTO. (Pedidos nuevos)</option>
+                        <option value="20-2499">20% DE DTO. (Pedidos +MXN2,499)</option>
+                        <option value="18-selected">18% DE DTO. (Productos seleccionados)</option>
+                    </select>
+                    <button class="btn-apply" onclick="applyCoupon()">Aplicar cupón</button>
+                    <p id="coupon-message"></p>
+                </div>
+
+
+                <!-- Sección de envío -->
+                <div class="shipping-section">
+                    <h5>Opciones de Envío</h5>
+                    <div class="shipping-option">
+                        <input type="radio" id="standard-shipping" name="shipping" value="5" checked>
+                        <label for="standard-shipping">Envío Estándar (3-11 días hábiles) $MXN150.00
+                            Gratis-importe superior a $MXN190.00</label>
+                    </div>
+                    <div class="shipping-option">
+                        <input type="radio" id="fast-shipping" name="shipping" value="15">
+                        <label for="fast-shipping">Envío Rápido (1-5 días hábiles) -$MXN460.00</label>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="payment-method">Selecciona un método de pago:</label>
+                    <select id="payment-method" class="form-control">
+                        <option value="Oxxo">Oxxo</option>
+                        <option value="Transferencia">Transferencia Bancaria</option>
+                        <option value="Coppel">Coppel</option>
+                        <option value="Visa">Visa</option>
+                    </select>
+                </div>
+
+                <button class="btn btn-pay" onclick="showPurchaseForm()">Pagar ahora</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Compra -->
+    <div class="modal fade" id="purchaseModal" tabindex="-1" role="dialog" aria-labelledby="purchaseModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="purchaseModalLabel">Completa tus datos para realizar la compra</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="purchase-form-submit">
+                        <input type="text" id="name" class="input-field" placeholder="Nombre Completo" required>
+                        <input type="email" id="email" class="input-field" placeholder="Correo Electrónico" required>
+                        <input type="text" id="address" class="input-field" placeholder="Dirección de Envío" required>
+                        <input type="text" id="card-number" class="input-field" placeholder="Número de Tarjeta" required>
+
+                        <div class="payment-method-summary">
+                            <strong>Método de pago seleccionado:</strong>
+                            <p id="selected-payment-method"></p>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-close" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-confirm" onclick="submitPurchase()">Confirmar Pago</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let discountApplied = 0; // Descuento aplicado
+            let shippingCost = 5; // Costo de envío predeterminado
+
+            renderCart();
+
+            // Renderizar el carrito
+            function renderCart() {
+                let cartItemsContainer = document.getElementById('cart-items');
+                cartItemsContainer.innerHTML = '';
+                let cartTotal = 0;
+                let cartItemCount = 0;
+
+                cart.forEach((item, index) => {
+                    cartTotal += item.precio * item.quantity;
+                    cartItemCount += item.quantity;
+
+                    cartItemsContainer.innerHTML += `
+                        <div class="cart-item">
+                            <img src="${item.imagen}" alt="${item.nombre}">
+                            <div class="cart-item-details">
+                                <h5>${item.nombre}</h5>
+                                <p>Precio: $${item.precio.toFixed(2)}</p>
+                                <p>Cantidad: <input type="number" min="1" value="${item.quantity}" onchange="updateProduct(${index}, this.value)" /></p>
+                            </div>
+                            <div>
+                                <strong>Total: $${(item.precio * item.quantity).toFixed(2)}</strong>
+                            </div>
+                            <div class="cart-item-actions">
+                                <button class="btn btn-warning" onclick="removeProduct(${index})">Eliminar</button>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                // Actualizar el total del carrito con el descuento y el envío
+                cartTotal -= discountApplied;
+                cartTotal += shippingCost;
+
+                document.getElementById('cart-total').textContent = cartTotal.toFixed(2);
+                document.getElementById('cart-count').textContent = cartItemCount;
+                localStorage.setItem('cart', JSON.stringify(cart));
+            }
+
+            // Actualizar la cantidad de un producto
+            window.updateProduct = function(index, quantity) {
+                if (quantity <= 0) {
+                    removeProduct(index);
+                } else {
+                    cart[index].quantity = parseInt(quantity);
+                    renderCart();
+                }
+            }
+
+            // Eliminar un producto del carrito
+            window.removeProduct = function(index) {
+                cart.splice(index, 1);
+                renderCart();
+            }
+
+            // Aplicar cupón de descuento
+            window.applyCoupon = function() {
+                const couponCode = document.getElementById('coupon-code').value.trim();
+                const couponMessage = document.getElementById('coupon-message');
+
+                if (couponCode === 'envio10') {
+                    discountApplied = 10; // Descuento de $10
+                    couponMessage.textContent = 'Cupón aplicado: $10 de descuento';
+                } else if (couponCode === 'descuento10') {
+                    discountApplied = 12.5; // Descuento del 10%
+                    couponMessage.textContent = 'Cupón aplicado: 10% de descuento';
+                } else {
+                    couponMessage.textContent = 'Cupón no válido.';
+                    discountApplied = 0;
+                }
+
+                renderCart();
+            }
+
+            // Mostrar el formulario de compra (modal)
+            window.showPurchaseForm = function() {
+                const cartTotal = parseFloat(document.getElementById('cart-total').textContent);
+                if (cartTotal > 0) {
+                    $('#purchaseModal').modal('show'); // Abrir el modal
+                } else {
+                    alert('El carrito está vacío. No se puede realizar la compra.');
+                }
+            }
+
+            // Enviar el formulario de compra
+            document.getElementById('purchase-form-submit').addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const address = document.getElementById('address').value;
+                const cardNumber = document.getElementById('card-number').value;
+
+                if (name && email && address && cardNumber) {
+                    alert('Compra realizada con éxito. ¡Gracias por tu compra!');
+                    // Aquí podrías hacer una llamada al servidor para procesar el pago
+                    $('#purchaseModal').modal('hide'); // Cerrar el modal
+                    localStorage.removeItem('cart'); // Limpiar el carrito
+                    renderCart();
+                } else {
+                    alert('Por favor, completa todos los campos del formulario.');
+                }
+            });
+        });
+        let cart = [{
+            id: 1,
+            name: 'Producto 1',
+            price: 100,
+            image: 'https://via.placeholder.com/100'
+        }, {
+            id: 2,
+            name: 'Producto 2',
+            price: 250,
+            image: 'https://via.placeholder.com/100'
+        }];
+
+        let cartCount = document.getElementById('cart-count');
+        let cartItemsContainer = document.getElementById('cart-items');
+        let cartTotal = document.getElementById('cart-total');
+
+        function renderCart() {
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+            cart.forEach(item => {
+                total += item.price;
+                cartItemsContainer.innerHTML += `
+                <div class="cart-item">
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="cart-item-details">
+                        <h6>${item.name}</h6>
+                        <p>$${item.price}</p>
+                    </div>
+                    <div class="cart-item-actions">
+                        <button class="btn btn-danger btn-sm" onclick="removeFromCart(${item.id})">Eliminar</button>
+                    </div>
+                </div>
+                `;
+            });
+
+            cartCount.textContent = cart.length;
+            cartTotal.textContent = total.toFixed(2);
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            renderCart();
+        }
+
+        function showPurchaseForm() {
+            let paymentMethod = document.getElementById('payment-method').value;
+            document.getElementById('selected-payment-method').textContent = paymentMethod;
+            $('#purchaseModal').modal('show');
+        }
+
+        function submitPurchase() {
+            alert(`Compra realizada con éxito utilizando el método de pago: ${document.getElementById('selected-payment-method').textContent}`);
+            $('#purchaseModal').modal('hide');
+        }
+
+        // Inicializar carrito
+        renderCart();
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta Creativa - Tu Lonchera Ideal</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .encuesta-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 50px;
+            background-color: #bbd5db;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 10;
+        }
+        
+        h2 {
+            text-align: center;
+            color: #007bff;
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+        
+        .question-card {
+            padding: 20px;
+            border-radius: 15px;
+            background-color: #f0f8ff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .question-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .question-card h4 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .question-card input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+            transition: transform 0.2s ease;
+        }
+        
+        .question-card input[type="checkbox"]:hover {
+            transform: scale(1.3);
+        }
+        
+        .question-card input[type="text"] {
+            padding: 8px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+            width: 80%;
+        }
+        
+        .btn-next {
+            background-color: #007bff;
+            color: white;
+            border-radius: 25px;
+            padding: 10px 30px;
+            font-size: 1.2rem;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        
+        .btn-next:hover {
+            background-color: #0056b3;
+            transform: scale(1.1);
+        }
+        
+        .encuesta-footer {
+            text-align: center;
+            font-size: 14px;
+            margin-top: 30px;
+            color: #777;
+        }
+        
+        .encuesta-footer a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        
+        .encuesta-footer a:hover {
+            text-decoration: underline;
+        }
+        /* Fondo dinámico */
+        
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://source.unsplash.com/1600x900/?nature');
+            background-size: 20% 20%;
+            /* Esto reduce la imagen a 5x5 */
+            background-repeat: repeat;
+            /* Esto asegura que la imagen se repita */
+            opacity: 0.2;
+            z-index: -1;
+        }
+        /* Media Queries para adaptabilidad */
+        
+        @media (max-width: 300px) {
+            .encuesta-container {
+                padding: 20px;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            .question-card h4 {
+                font-size: 1.2rem;
+            }
+            .btn-next {
+                width: 100%;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Fondo dinámico de imagen -->
+    <div class="background"></div>
+
+    <div class="encuesta-container">
+        <h2>¡Crea Tu Lonchera Ideal! 🌟</h2>
+
+        <form id="surveyForm">
+            <!-- Pregunta 1 -->
+            <div class="question-card">
+                <h4>¿Para qué actividades usarías tu lonchera?</h4>
+                <div class="option">
+                    <input type="checkbox" name="actividades" value="Trabajo/Oficina">
+                    <span>Trabajo/Oficina</span>
+                </div>
+                <div class="option">
+                    <input type="checkbox" name="actividades" value="Universidad">
+                    <span>Universidad</span>
+                </div>
+                <div class="option">
+                    <input type="checkbox" name="actividades" value="Gimnasio">
+                    <span>Gimnasio</span>
+                </div>
+                <div class="option">
+                    <input type="checkbox" name="actividades" value="Excursiones">
+                    <span>Excursiones</span>
+                </div>
+                <div class="option">
+                    <input type="checkbox" name="actividades" value="Otras">
+                    <span>Otras (especificar):</span>
+                    <input type="text" name="actividades_otras" placeholder="Escribe aquí...">
+                </div>
+                <button type="button" class="btn-next" id="nextBtn1">Siguiente pregunta</button>
+            </div>
+
+            <!-- Pregunta 2 -->
+            <div class="question-card" style="display:none;">
+                <h4>¿Qué tipo de alimentos te gustaría llevar?</h4>
+                <div class="option">
+                    <input type="checkbox" name="alimentos" value="Ensaladas y frutas">
+                    <span>Ensaladas y frutas</span>
+                </div>
+                <div class="option">
+                    <input type="checkbox" name="alimentos" value="Alimentos calientes">
+                    <span>Alimentos calientes</span>
+                </div>
+                <div class="option">
+                    <input type="checkbox" name="alimentos" value="Snacks">
+                    <span>Snacks y bocadillos</span>
+                </div>
+                <div class="option">
+                    <input type="checkbox" name="alimentos" value="Bebidas">
+                    <span>Bebidas (café, té, batidos)</span>
+                </div>
+                <div class="option">
+                    <input type="checkbox" name="alimentos" value="Otros">
+                    <span>Otros (especificar):</span>
+                    <input type="text" name="alimentos_otros" placeholder="Escribe aquí...">
+                </div>
+                <button type="button" class="btn-next" id="nextBtn2">Siguiente pregunta</button>
+            </div>
+
+            <!-- Pregunta 3 -->
+            <div class="question-card" style="display:none;">
+                <h4>¿Qué características te gustaría que tuviera la lonchera?</h4>
+                <div class="option">
+                    <input type="checkbox" name="caracteristicas" value="Gran capacidad de almacenamiento">
+                    <span>Gran capacidad de almacenamiento</span>
+                </div>
+                <div class="option">
+                    <input type="checkbox" name="caracteristicas" value="Compartimientos separados">
+                    <span>Compartimientos separados</span>
+                </div>
+                <div class="option">
+                    <input type="checkbox" name="caracteristicas" value="Mantener temperatura">
+                    <span>Mantener temperatura por más tiempo</span>
+                </div>
+                <div class="option">
+                    <input type="checkbox" name="caracteristicas" value="Duradera y resistente">
+                    <span>Duradera y resistente</span>
+                </div>
+                <div class="option">
+                    <input type="checkbox" name="caracteristicas" value="Fácil de limpiar">
+                    <span>Fácil de limpiar</span>
+                </div>
+                <button type="button" class="btn-next" id="submitBtn">Enviar Encuesta</button>
+            </div>
+        </form>
+
+        <div class="encuesta-footer">
+            <p>Gracias por ayudarnos a crear la lonchera ideal. ¡Tu opinión es muy importante! 🌟</p>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Navegar entre las preguntas
+            $('#nextBtn1').click(function() {
+                $('.question-card').eq(0).hide();
+                $('.question-card').eq(1).show();
+            });
+
+            $('#nextBtn2').click(function() {
+                $('.question-card').eq(1).hide();
+                $('.question-card').eq(2).show();
+            });
+
+            // Enviar la encuesta y redirigir
+            $('#submitBtn').click(function() {
+                alert("¡Gracias por tu participación!");
+                // Redirigir a la página principal (index.html)
+                window.location.href = "index.html"; // Asegúrate de que la URL de la página principal sea la correcta
+            });
+        });
+    </script>
+
+</body>
+
+</html>

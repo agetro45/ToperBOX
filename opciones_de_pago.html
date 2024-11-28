@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opciones de Pago</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* General body styles */
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #7c3ebe, #2575fc);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        /* Header styles */
+        
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        header h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            color: #fff;
+            animation: fadeInDown 1s ease;
+        }
+        /* Container styles */
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .content {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .content h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ffd700;
+            text-align: center;
+        }
+        
+        .option {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        
+        .option:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .option h3 {
+            color: #ffeb3b;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .option p {
+            color: #fff;
+            font-size: 1rem;
+        }
+        
+        .option img {
+            height: 50px;
+            margin-top: 10px;
+            filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.2));
+        }
+        
+        .option img:hover {
+            transform: scale(1.1);
+            transition: transform 0.2s ease-in-out;
+        }
+        /* Footer styles */
+        
+        footer {
+            background: linear-gradient(135deg, #34495e, #2c3e50);
+            text-align: center;
+            padding: 20px;
+        }
+        
+        footer a {
+            background: #44a256;
+            color: #2c3e50;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease, transform 0.3s;
+        }
+        
+        footer a:hover {
+            background: #ffeb3b;
+            transform: scale(1.1);
+        }
+        /* Animations */
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Opciones de Pago</h1>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <section class="content">
+            <h2>Elige tu método preferido</h2>
+
+            <!-- Payment Options -->
+            <div class="option">
+                <h3>Tarjetas de crédito y débito</h3>
+                <p>Aceptamos Visa, MasterCard y American Express</p>
+                <img src="imagenes/Visa.png" alt="Visa">
+                <img src="imagenes/Mastercard.png" alt="MasterCard">
+                <img src="imagenes/American Express.png" alt="American Express">
+            </div>
+
+            <div class="option">
+                <h3>OXXO</h3>
+                <p>Realiza tu pago en cualquier tienda OXXO. ¡Fácil y rápido!</p>
+                <img src="imagenes/Oxxo.png" alt="OXXO">
+            </div>
+
+            <div class="option">
+                <h3>Coppel</h3>
+                <p>Paga en tiendas Coppel con tu recibo. Disponible en todo México.</p>
+                <img src="imagenes/Coppel.png" alt="Coppel">
+            </div>
+
+            <div class="option">
+                <h3>Transferencia Bancaria</h3>
+                <p>Realiza transferencias desde tu banco. Recibirás los detalles al finalizar la compra.</p>
+                <img src="imagenes/Transferencia.jpg" alt="Transferencia Bancaria">
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <a href="index.html">Volver al Inicio</a>
+    </footer>
+</body>
+
+</html>

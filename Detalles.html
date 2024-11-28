@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Producto</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background-color: #f4f4f9;
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
+        }
+        
+        .product-details {
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .product-details img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .product-details h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .product-details p {
+            font-size: 1.2em;
+            color: #777;
+        }
+        
+        .product-details .price {
+            font-size: 1.5em;
+            color: #28a745;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        
+        .product-details .btn {
+            width: 100%;
+            border-radius: 25px;
+            padding: 10px 15px;
+        }
+        
+        .product-details .btn-success {
+            background-color: #28a745;
+            border: none;
+        }
+        
+        .product-details .btn-success:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="product-details">
+        <img id="product-image" src="" alt="Imagen del producto">
+        <h1 id="product-name"></h1>
+        <p id="product-description"></p>
+        <p class="price" id="product-price"></p>
+        <button class="btn btn-success" onclick="agregarAlCarrito()">Agregar al Carrito</button>
+    </div>
+
+    <script>
+        // Obtener los detalles del producto desde localStorage
+        const producto = JSON.parse(localStorage.getItem('productoSeleccionado'));
+
+        if (producto) {
+            document.getElementById('product-image').src = producto.imagen;
+            document.getElementById('product-name').textContent = producto.nombre;
+            document.getElementById('product-description').textContent = producto.fichaTecnica;
+            document.getElementById('product-price').textContent = `$${producto.precio.toFixed(2)}`;
+        } else {
+            alert("No se encontraron detalles del producto.");
+            window.location.href = 'index.html'; // Redirigir al inicio si no hay datos
+        }
+
+        // Función para agregar el producto al carrito
+        function agregarAlCarrito() {
+            let carrito = JSON.parse(localStorage.getItem('cart')) || [];
+            let productoEnCarrito = carrito.find(item => item.id === producto.id);
+
+            if (productoEnCarrito) {
+                productoEnCarrito.cantidad++;
+            } else {
+                carrito.push({...producto,
+                    cantidad: 1
+                });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(carrito));
+            alert('Producto agregado al carrito');
+        }
+    </script>
+</body>
+
+</html>

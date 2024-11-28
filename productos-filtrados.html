@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos Filtrados</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Estilos personalizados */
+        
+        body {
+            background-color: #f4f4f9;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .category-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+        
+        .category-card img {
+            border-radius: 10px 10px 0 0;
+            max-height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+        
+        .category-card h5 {
+            font-size: 1.25em;
+            font-weight: bold;
+            color: #333;
+            margin-top: 15px;
+        }
+        
+        .category-card p {
+            color: #777;
+            font-size: 1em;
+            margin: 10px 0;
+        }
+        
+        .category-card .btn {
+            width: 100%;
+            border-radius: 25px;
+            padding: 10px 15px;
+        }
+        
+        .category-card .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+        
+        .category-card .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        
+        .category-card .btn-success {
+            background-color: #28a745;
+            border: none;
+        }
+        
+        .category-card .btn-success:hover {
+            background-color: #218838;
+        }
+        
+        .modal-content {
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        .modal-header {
+            border-bottom: none;
+        }
+        
+        .modal-body img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+        
+        .modal-footer {
+            border-top: none;
+        }
+        
+        .category-title {
+            font-size: 2em;
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+        /* Responsividad */
+        
+        @media (max-width: 768px) {
+            .category-card {
+                margin-bottom: 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .category-card {
+                margin-bottom: 10px;
+            }
+        }
+        /* Centrado de los productos */
+        
+        .productos-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .col-md-3 {
+            max-width: 250px;
+            flex-grow: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="navigation-buttons mt-4">
+        <div class="container">
+            <button class="btn btn-secondary" onclick="history.back()">Atrás</button>
+        </div>
+    </section>
+
+    <div class="container">
+        <h2 id="titulo-seccion" class="text-center category-title">Productos Filtrados</h2>
+        <div id="productos-lista" class="productos-container"></div>
+    </div>
+
+    <!-- Modal para mostrar los detalles del producto -->
+    <div class="modal fade" id="detallesModal" tabindex="-1" aria-labelledby="detallesModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detallesModalLabel">Detalles del Producto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="detallesProducto">
+                    <!-- Detalles del producto aparecerán aquí -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const productos = [{
+            id: 1,
+            nombre: 'Lonchera',
+            categoria: 'Loncheras',
+            precio: 10.99,
+            imagen: 'imagenes/Lonchera.png',
+            fichaTecnica: 'Lonchera para tus alimentos.'
+        }, {
+            id: 2,
+            nombre: 'Topers',
+            categoria: 'Toppers',
+            precio: 15.99,
+            imagen: 'imagenes/Topers.jpg',
+            fichaTecnica: 'Conjunto de contenedores de colores, apilables.'
+        }, {
+            id: 3,
+            nombre: 'Topper Circular',
+            categoria: 'Toppers',
+            precio: 23.99,
+            imagen: 'imagenes/Toper circular.jpg',
+            fichaTecnica: 'Contenedor circular apilable.'
+        }, {
+            id: 4,
+            nombre: 'Topper Cuadrado',
+            categoria: 'Toppers',
+            precio: 37.50,
+            imagen: 'imagenes/Toper cuadrado.jpg',
+            fichaTecnica: 'Contenedor cuadrado con tapa hermética.'
+        }, {
+            id: 5,
+            nombre: 'Botella',
+            categoria: 'Botellas',
+            precio: 8.99,
+            imagen: 'imagenes/Botella.png',
+            fichaTecnica: 'Conjunto de contenedores de colores, apilables.'
+        }, {
+            id: 6,
+            nombre: 'Botellaa',
+            categoria: 'Botellas',
+            precio: 7.99,
+            imagen: 'imagenes/botellaa.png',
+            fichaTecnica: 'desc Botella estilizada y posiblemente transparente, hecha de vidrio o plástico. Material: Vidrio o plástico. Capacidad: 500 ml - 1 litro. Uso: Para agua u otras bebidas. Características: Diseño ligero, fácil de llevar.'
+
+        }, {
+            id: 7,
+            nombre: 'Cubiertos',
+            categoria: 'Cubiertos',
+            precio: 36.80,
+            imagen: 'imagenes/cubiertos.png',
+            fichaTecnica: 'Set de cubiertos de aspecto metálico.'
+        }, {
+            id: 8,
+            nombre: 'Tenedor cuchara',
+            categoria: 'Cubiertos',
+            precio: 12.99,
+            imagen: 'imagenes/Tenedor cuchara.jpg',
+            fichaTecnica: 'Cubiertos de colores.'
+        }, {
+            id: 9,
+            nombre: 'Taza',
+            categoria: 'Tazas',
+            precio: 200.99,
+            imagen: 'imagenes/Taza.jpg',
+            fichaTecnica: 'Taza de cerámica de color azul metálico con asa.'
+        }, {
+            id: 10,
+            nombre: 'Tasa Metálicas',
+            categoria: 'Tazas',
+            precio: 40.99,
+            imagen: 'imagenes/Tasa Metálicas.jpg',
+            fichaTecnica: 'Tazas metálicas de diseño elegante con acabado mate y borde pulido.'
+        }, {
+            id: 11,
+            nombre: 'Tazas Apilables',
+            categoria: 'Tazas',
+            precio: 200.99,
+            imagen: 'imagenes/Tazas Apilables.png',
+            fichaTecnica: 'Tazas metálicas apilables con asas.'
+        }];
+
+        let carrito = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function mostrarProductos(filtroCategoria = '') {
+            const productosContainer = document.getElementById('productos-lista');
+            productosContainer.innerHTML = '';
+
+            const productosFiltrados = filtroCategoria ? productos.filter(p => p.categoria === filtroCategoria) : productos;
+
+            productosFiltrados.forEach(producto => {
+                const productoHtml = `
+                    <div class="col-md-3 mb-4">
+                        <div class="category-card p-3">
+                            <img src="${producto.imagen}" alt="${producto.nombre}" class="img-fluid">
+                            <h5>${producto.nombre}</h5>
+                            <p>$${producto.precio.toFixed(2)}</p>
+                            <button class="btn btn-primary" onclick="mostrarDetalles(${producto.id})">Ver Detalles</button>
+                            <button class="btn btn-success mt-2" onclick="agregarAlCarrito(${producto.id})">Agregar al Carrito</button>
+                        </div>
+                    </div>`;
+                productosContainer.innerHTML += productoHtml;
+            });
+        }
+
+        function agregarAlCarrito(idProducto) {
+            const producto = productos.find(p => p.id === idProducto);
+            let productoEnCarrito = carrito.find(item => item.id === idProducto);
+
+            if (productoEnCarrito) {
+                productoEnCarrito.cantidad++;
+            } else {
+                carrito.push({...producto,
+                    cantidad: 1
+                });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(carrito));
+            alert('Producto agregado al carrito');
+        }
+
+        function mostrarDetalles(idProducto) {
+            const producto = productos.find(p => p.id === idProducto);
+            if (producto) {
+                const detallesProducto = `
+                    <img src="${producto.imagen}" alt="${producto.nombre}" class="img-fluid mb-3">
+                    <h5>${producto.nombre}</h5>
+                    <p>${producto.descripcion}</p>
+                    <p><strong>Precio:</strong> $${producto.precio.toFixed(2)}</p>
+                `;
+                document.getElementById('detallesProducto').innerHTML = detallesProducto;
+                $('#detallesModal').modal('show');
+            }
+        }
+
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const categoria = urlParams.get('categoria');
+            if (categoria) {
+                mostrarProductos(categoria);
+                document.getElementById('titulo-seccion').textContent = `Productos de ${categoria}`;
+            } else {
+                mostrarProductos();
+            }
+        };
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
